@@ -3,8 +3,20 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
+define w = Character("Logan")
 
+label __init_variables:
+    python:
+        pass
+    return
+
+init:
+    transform logan_tx:
+        zoom 0.75
+        nearest True
+    transform xmansion_tx:
+        zoom 2.2
+        xalign 1.0
 
 # The game starts here.
 
@@ -14,19 +26,24 @@ label start:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene bg room
+    scene bg x-mansion at truecenter, xmansion_tx
+    with fade
+    play music "music/28239__herbertboland__forestbirds.ogg"
+
+    "At long last, I've finally found it. The X-Mansion!"
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show eileen happy
+    show wolverine grimace at right, logan_tx
+    with dissolve
 
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    w "Hey, bub. What are you doing outside class? Where's your hall pass?"
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    w "Wait a minute, you're not a student... who are you?"
 
     # This ends the game.
 
