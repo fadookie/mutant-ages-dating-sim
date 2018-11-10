@@ -39,6 +39,7 @@ define gui.about = _p("""
 
 define build.name = "X-MenDatingOriginsWolverine"
 
+define config.layers = [ 'zero', 'master', 'transient', 'belowmid', 'midlayer', 'screens', 'overlay' ]
 
 ## Sounds and music ############################################################
 
