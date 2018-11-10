@@ -4,6 +4,8 @@
 # name of the character.
 
 define w = Character("Logan")
+default visited_pumpkin = False
+default visited_haunted_house = False
 
 init:
     transform xflip_tx:
@@ -50,14 +52,14 @@ label start:
     w "Wait a minute, you're not a student... who are you?"
 
 menu:
-    "My name is Poochy... Dr. Poochy! You don't remember me?":
-        jump poochy
-
     "I'm Ryan Pagella, multi-talented internet celebrity and podcast host!":
         jump ryan
 
+    "My name is Poochy... Dr. Poochy! You don't remember me?":
+        jump poochy
+
     "What's it to you, bub?":
-        jump ryan
+        jump maybe_ask_date
 # TODO flesh out ryan
 
     "Spookyworld debug":
@@ -80,36 +82,44 @@ label poochy:
 
 menu:
     "I... I can't get you out of my head. I've tried to move on...":
-        jump ask_date
+        jump maybe_ask_date
 
     "I don't know. This was a mistake.":
-        jump goodbye
+        w "Alright. Maybe it's best if we let sleeping dogs lie."
+        w "If you change your mind, kid, I'll be here."
+        jump badend
 
 label ryan:
     w "And what the hell are you doing here?"
+    "{i}I tried to quickly come up with a cover story.{/i}"
+    "I'm doing some investigative journalism about the X-Men. I want to learn the real story, not the propoganda we hear about in the media."
+    jump maybe_ask_date
 
-label ask_date:
+label maybe_ask_date:
     w "I don't have all day, let's cut to the chase. Is there something you want to ask me?"
 
-    "I... will you be my date to Spooky World this year?"
+    "{i}I tried to screw up my courage. I'd practiced this moment in my head so many times, but I didn't know if I could bring myself to do it.{/i}"
+
+menu:
+    "{i}I went for it!{/i}":
+        jump ask_date
+
+    "{i}I chickened out.{/i}":
+        "I... sorry, I think I have the wrong address."
+        w "{i}(raising an eyebrow){/i} Sure, whatever you say, kid. The exit's right behind you."
+        jump badend
+
+label ask_date:
+    "I... um... will you be my date to Spooky World this year?"
 
     w "..."
-    show wolverine smile at right, logan_tx
-    with dissolve
+    show wolverine smile at right, logan_tx with dissolve
     w "Sure! Why not. You're kinda cute after all."
     w "Meet me at the X-Jet hangar at 6pm."
+    hide wolverine with dissolve
 
     jump spookyworld
 
-label goodbye:
-    w "Alright. Maybe it's best if we let sleeping dogs lie."
-    w "If you change your mind, kid, I'll be here."
-    return
-
-label end:
-    # This ends the game.
-
-    return
 
 label spookyworld:
     scene bg spookyworld at spookyworld_tx with fade
@@ -131,8 +141,9 @@ menu:
         jump hauntedhouse
 
 label pumpkin:
-    scene bg spookyworld at spookyworld_tx with fade
-
+    $ visited_pumpkin = True
+    hide wolverine with dissolve
+    #TODO carve sfx
     "{i}We carved pumpkins.{/i}"
     show pumpkin wolverine at topleft with dissolve
     "{i}Mine came out great!{/i}"
@@ -146,8 +157,7 @@ label pumpkin:
     hide pumpkin with dissolve
     "Let's see your pumpkin, Logan!"
 
-    show wolverine grimace at right, logan_tx
-    with dissolve
+    show wolverine grimace at right, logan_tx with dissolve
     w "Ugh... I thought I was the best at cutting! I don't think I have the patience for this."
     show pumpkin bad at badpumpkin_tx
     with dissolve
@@ -158,14 +168,40 @@ label pumpkin:
     w "Yeah, I'm done here. Where to next, bub?"
 
 menu:
-    "To the haunted house!":
+    "To the haunted house!" if not visited_haunted_house:
         jump hauntedhouse
 
     "I was thinking we could go back to my place...":
         jump myplace
 
 label hauntedhouse:
-    "We went to the haunted house."
+    $ visited_haunted_house = True
+    show wolverine grimace at right, logan_tx with dissolve
+
+    w "Uhhh... I'm not that big on haunted houses. Do we have to?"
+    "Pleeease? It's my favorite!"
+
+    w "Alright. I'll do it for you, cutie."
+
+    hide wolverine with dissolve
+    "{i}Yesss! Haunted house!{/i}"
+    # TODO haunted house sfx
+
+    show wolverine back at right, logan_tx with dissolve
+    w "Aaaargh! not another Weapon X flashback!!! {i}(he starts sobbing){/i}"
+
+    "I'm so sorry, I didn't know it would affect you like this. You seem so strong and tough..."
+    "{i}I awkwardly tried to comfort him by putting my hand on his back.{/i}"
+    "There there... why don't we do something else to take your mind off it?"
+    show wolverine grimace at right, logan_tx with dissolve
+    "That sounds good... Where do you want to go next?"
+
+menu:
+    "Let's carve pumpkins!" if not visited_pumpkin:
+        jump pumpkin
+
+    "I was thinking we could go back to my place...":
+        jump myplace
 
 label myplace:
     show black onlayer zero
@@ -173,9 +209,9 @@ label myplace:
     play music "music/X-Men Theme on Sax.mp3"
 
     "{i}Logan came back to my place. I threw on some smooth jams and tried to hide the knot in my stomach.{/i}"
-    
+
     show wolverine smile at left, xflip_tx, logan_tx with dissolve
-    
+
     w "Hey, um, nice place."
 
     "Thanks! Sorry it's a bit messy! Can I get you something to drink?"
@@ -194,10 +230,11 @@ label myplace2:
     w "Sounds good. I'll have one too."
 
     show wolverine halfback at left, xflip_tx, logan_tx with dissolve
+    #TODO pour sfx
     "{i}I poured the drinks. We sipped them while he had a look around my apartment.{/i}"
-    
+
     w "Hey, is that a plushy doll of me?"
-    
+
     "I, err... yes?"
 
     show wolverine smile at left, xflip_tx, logan_tx with dissolve
@@ -207,10 +244,17 @@ label myplace2:
 
     w "Heh. Well I guess it's time you got to know what hugging the real thing feels like."
 
-    "{i}I fell into his arms. It was finally happening...{/i}"
+    "{i}I fell into his warm, fuzzy arms. It was finally happening...{/i}"
 
     scene black with fade
-    
+
     "{i}The End... for now?{/i}"
     "{i}Thanks so much to Ryan and Maddy from Atomic Blue Productions for helping me keep a smile on my face during the troubled times we live in.{/i}"
     "{i}And sorry to everyone I stole stuff from to slap this thing together with no art skills! Please see CREDITS.txt for an attribution list.{/i}"
+    return
+
+label badend:
+    hide wolverine with dissolve
+    scene black with fade
+    "{i}I couldn't believe it! I came all the way out here just to give up? Maybe I should give it another try...{/i}"
+    return
