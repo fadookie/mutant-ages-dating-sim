@@ -143,7 +143,7 @@ menu:
 label pumpkin:
     $ visited_pumpkin = True
     hide wolverine with dissolve
-    #TODO carve sfx
+    play sound "sfx/pumpkin.opus"
     "{i}We carved pumpkins.{/i}"
     show pumpkin wolverine at topleft with dissolve
     "{i}Mine came out great!{/i}"
@@ -184,8 +184,10 @@ label hauntedhouse:
     w "Alright. I'll do it for you, cutie."
 
     hide wolverine with dissolve
+    play sound "sfx/hauntedhouse.opus"
     "{i}Yesss! Haunted house!{/i}"
-    # TODO haunted house sfx
+    scene bg spookyworld at spookyworld_tx with vpunch
+    "{i}I love haunted houses! Someday, I want to open my own X-Men haunted house so I can play Mr. Sinister!{/i}"
 
     show wolverine back at right, logan_tx with dissolve
     w "Aaaargh! not another Weapon X flashback!!! {i}(he starts sobbing){/i}"
@@ -206,6 +208,7 @@ menu:
 label myplace:
     show black onlayer zero
     scene bg myplace at myplace_tx, truecenter with fade
+    $renpy.music.set_volume(0.1, 0, 'music')
     play music "music/X-Men Theme on Sax.mp3"
 
     "{i}Logan came back to my place. I threw on some smooth jams and tried to hide the knot in my stomach.{/i}"
@@ -229,9 +232,15 @@ menu:
 label myplace2:
     w "Sounds good. I'll have one too."
 
+    play sound "sfx/240464__godowan__pour-water2.wav"
+    "{i}I poured the drinks.{/i}"
+
+    play sound "sfx/76812__dj-burnham__wine-glasses-clink.mp3"
+    w "Thanks. Cheers!"
+
     show wolverine halfback at left, xflip_tx, logan_tx with dissolve
-    #TODO pour sfx
-    "{i}I poured the drinks. We sipped them while he had a look around my apartment.{/i}"
+
+    "{i}We sipped the drinks while he had a look around my apartment.{/i}"
 
     w "Hey, is that a plushy doll of me?"
 
