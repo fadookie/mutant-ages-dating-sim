@@ -29,7 +29,50 @@ define config.version = "Alpha 0.1"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
+#TODO finish credits
+
+define gui.about = _p("""A Game by Eliot Lash
+
+Inspired by The Mutant Ages podcast.
+
+The following assets were used with permission:
+
+Sounds from Freesound.org:
+
+Sonic_Melon Stabbing Sample Remix.wav by CGEffex,
+PUMPKIN_CARVING:STABBING.WAV by dansotak,
+Wine glasses clink.mp3 by DJ Burnham,
+Some Weird Screams by RaspberryTickle,
+Scream.aif by rogueturtle,
+Resonance from hell A by CosmicD,
+pour_water2.wav by Godowan,
+Tawny Owls .wav by Benboncan,
+ForestBirds.wav by HerbertBoland
+
+Public Domain wine glass image from Pixabay
+
+
+The following copyrighted assets were used in what I'm hoping qualifies as fair use as this is a work of parody:
+
+Wolverine sprites from the X-Men Arcade Game
+
+X-Mansion art from The New X-Men
+
+Spooky World photo from nightmarenewengland.com
+
+Superhero bedroom photo from ???
+
+Wolverine jack-o-lantern photo from ???
+
+Crappy jack-o-lantern photo from ???
+
+
+Music:
+
+"Wolverine's On A Date (With You)" by MIDI Meyers
+
+"X-Men Theme on Sax" by ??? (youtube)
+
 """)
 
 
@@ -63,6 +106,8 @@ define config.has_voice = False
 ## game, until it is stopped or another file is played.
 
 define config.main_menu_music = "music/Wolverine's On A Date (With You).ogg"
+
+define config.fade_music = 1.0
 
 
 ## Transitions #################################################################

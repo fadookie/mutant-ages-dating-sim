@@ -6,6 +6,7 @@
 define w = Character("Logan")
 default visited_pumpkin = False
 default visited_haunted_house = False
+default debug = True
 
 init:
     transform xflip_tx:
@@ -33,8 +34,7 @@ label start:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene bg x-mansion at truecenter, xmansion_tx
-    with fade
+    scene bg x-mansion at truecenter, xmansion_tx with fade
     play music "music/28239__herbertboland__forestbirds.ogg"
 
     "{i}At long last, I've finally found it. The X-Mansion!{/i}"
@@ -43,8 +43,7 @@ label start:
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show wolverine grimace at right, logan_tx
-    with dissolve
+    show wolverine grimace at right, logan_tx with dissolve
 
     # These display lines of dialogue.
 
@@ -60,12 +59,11 @@ menu:
 
     "What's it to you, bub?":
         jump maybe_ask_date
-# TODO flesh out ryan
 
-    "Spookyworld debug":
+    "Spookyworld debug" if debug:
         jump spookyworld
 
-    "Myplace debug":
+    "Myplace debug" if debug:
         jump myplace
 
 label poochy:
@@ -122,16 +120,22 @@ label ask_date:
 
 
 label spookyworld:
+    scene black with fade
+    stop music fadeout 2.0
+    "{i}I had butterflies in my stomach. I could hardly believe it!{/i}"
+    "{i}Before I knew it, we were blasting off...{/i}"
+# TODO blast off sound
+
     scene bg spookyworld at spookyworld_tx with fade
     play music "music/63842__benboncan__tawny-owls.ogg"
 
-    "{i}Spooky World! My favorite Halloween Haunt.{/i}"
+    "{i}... to Spooky World! My favorite Halloween haunt.{/i}"
     "{i}After years of waiting, it's all coming true...{/i}"
     "{i}Wolverine's on a date with me!{/i}"
 
     show wolverine smile at right, logan_tx
     with dissolve
-    w "Man, this place is even creepier than my van!"
+    w "Man, this place is even creepier than my RV!"
     w "Where to?"
 
 menu:
@@ -148,8 +152,7 @@ label pumpkin:
     show pumpkin wolverine at topleft with dissolve
     "{i}Mine came out great!{/i}"
 
-    show wolverine smile at right, logan_tx behind pumpkin
-    with dissolve
+    show wolverine smile at right, logan_tx behind pumpkin with dissolve
     w "Aw, you're sweet! Can I keep it?"
 
     "Thanks! I did that one freehand! Of course you can keep it."
@@ -159,13 +162,12 @@ label pumpkin:
 
     show wolverine grimace at right, logan_tx with dissolve
     w "Ugh... I thought I was the best at cutting! I don't think I have the patience for this."
-    show pumpkin bad at badpumpkin_tx
-    with dissolve
+    show pumpkin bad at badpumpkin_tx with dissolve
 
     "Uhhh... that's disturbing! Maybe we can donate it to the haunted house?"
 
     hide pumpkin with dissolve
-    w "Yeah, I'm done here. Where to next, bub?"
+    w "Yeah, I'm done here. Where to next?"
 
 menu:
     "To the haunted house!" if not visited_haunted_house:
@@ -184,16 +186,20 @@ label hauntedhouse:
     w "Alright. I'll do it for you, cutie."
 
     hide wolverine with dissolve
-    play sound "sfx/hauntedhouse.opus"
+    play music "music/hauntedhouse_ambience.opus"
     "{i}Yesss! Haunted house!{/i}"
+    play sound "sfx/hauntedhouse_scream.opus"
     scene bg spookyworld at spookyworld_tx with vpunch
     "{i}I love haunted houses! Someday, I want to open my own X-Men haunted house so I can play Mr. Sinister!{/i}"
 
     show wolverine back at right, logan_tx with dissolve
-    w "Aaaargh! not another Weapon X flashback!!! {i}(he starts sobbing){/i}"
+    w "Aaaargh! Not another Weapon X flashback!!! {i}(he starts sobbing){/i}"
+    play music "music/63842__benboncan__tawny-owls.ogg"
 
     "I'm so sorry, I didn't know it would affect you like this. You seem so strong and tough..."
     "{i}I awkwardly tried to comfort him by putting my hand on his back.{/i}"
+    "{i}Mmm, just look at that back...{/i}"
+    "{i}... sorry, I'm a terrible person.{/i}"
     "There there... why don't we do something else to take your mind off it?"
     show wolverine grimace at right, logan_tx with dissolve
     "That sounds good... Where do you want to go next?"
@@ -206,16 +212,19 @@ menu:
         jump myplace
 
 label myplace:
+    show wolverine smile at right, logan_tx with dissolve
+    w "I thought you'd never ask, bub."
+
     show black onlayer zero
     scene bg myplace at myplace_tx, truecenter with fade
     $renpy.music.set_volume(0.1, 0, 'music')
     play music "music/X-Men Theme on Sax.mp3"
 
-    "{i}Logan came back to my place. I threw on some smooth jams and tried to hide the knot in my stomach.{/i}"
+    "{i}Homygosh. Logan came back to my place. I threw on some smooth jams and tried to hide the knot in my stomach.{/i}"
 
     show wolverine smile at left, xflip_tx, logan_tx with dissolve
 
-    w "Hey, um, nice place."
+    w "Hey, um, nice pad."
 
     "Thanks! Sorry it's a bit messy! Can I get you something to drink?"
 
@@ -233,7 +242,7 @@ label myplace2:
     w "Sounds good. I'll have one too."
 
     play sound "sfx/240464__godowan__pour-water2.wav"
-    "{i}I poured the drinks.{/i}"
+    "{i}My hands were shaking a little bit as I poured the drinks. I really needed some liquid courage.{/i}"
 
     play sound "sfx/76812__dj-burnham__wine-glasses-clink.mp3"
     w "Thanks. Cheers!"
@@ -259,7 +268,8 @@ label myplace2:
 
     "{i}The End... for now?{/i}"
     "{i}Thanks so much to Ryan and Maddy from Atomic Blue Productions for helping me keep a smile on my face during the troubled times we live in.{/i}"
-    "{i}And sorry to everyone I stole stuff from to slap this thing together with no art skills! Please see CREDITS.txt for an attribution list.{/i}"
+    stop music fadeout 1.0
+    "{i}And sorry to everyone I stole stuff from to slap this silly little thing together with no art skills! Please see the About page for attribution.{/i}"
     return
 
 label badend:
