@@ -29,8 +29,6 @@ define config.version = "Alpha 0.1"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-#TODO finish credits
-
 define gui.about = _p("""A Game by Eliot Lash
 
 Inspired by The Mutant Ages podcast.
@@ -56,22 +54,24 @@ The following copyrighted assets were used in what I'm hoping qualifies as fair 
 
 Wolverine sprites from the X-Men Arcade Game
 
+Mr. Sinister sprite from Marvel: Avengers Alliance
+
 X-Mansion art from The New X-Men
 
 Spooky World photo from nightmarenewengland.com
 
-Superhero bedroom photo from ???
+Superhero bedroom photo from wallpaperink.com
 
-Wolverine jack-o-lantern photo from ???
+Wolverine jack-o-lantern art from orangeandblackpumpkins.com
 
-Crappy jack-o-lantern photo from ???
+Jacked-up jack-o-lantern photo from amomamok.blogspot.com
 
 
 Music:
 
-"Wolverine's On A Date (With You)" by MIDI Meyers
+"Wolverine's On A Date (With You)" by MIDI Meyers (via bandcamp.com)
 
-"X-Men Theme on Sax" by ??? (youtube)
+"X-Men Theme on Sax" by Charles Thomas (via youtube.com)
 
 """)
 

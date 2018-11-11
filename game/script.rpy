@@ -69,6 +69,7 @@ menu:
         jump myplace
 
 label poochy:
+# TODO try to fact-check
     w "You know what, you look kind of familiar... where do I know you from?"
 
     "Do you mean to tell me you forgot about everything that happened when you were living in Warcraft Valley?"
