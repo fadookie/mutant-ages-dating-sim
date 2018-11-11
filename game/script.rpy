@@ -14,6 +14,8 @@ init:
     transform logan_tx:
         zoom 0.75
         nearest True
+    transform sinister_tx:
+        zoom 2.5
     transform xmansion_tx:
         zoom 2.2
         xalign 1.0
@@ -135,7 +137,7 @@ label spookyworld:
 
     show wolverine smile at right, logan_tx
     with dissolve
-    w "Man, this place is even creepier than my RV!"
+    w "Man, this place is even creepier than my truck!"
     w "Where to?"
 
 menu:
@@ -189,9 +191,9 @@ label hauntedhouse:
     play music "music/hauntedhouse_ambience.opus"
     "{i}Yesss! Haunted house!{/i}"
     play sound "sfx/hauntedhouse_scream.opus"
-    scene bg spookyworld at spookyworld_tx with vpunch
+    show sinister at sinister_tx, center with vpunch
     "{i}I love haunted houses! Someday, I want to open my own X-Men haunted house so I can play Mr. Sinister!{/i}"
-
+    hide sinister with dissolve
     show wolverine back at right, logan_tx with dissolve
     w "Aaaargh! Not another Weapon X flashback!!! {i}(he starts sobbing){/i}"
     play music "music/63842__benboncan__tawny-owls.ogg"
