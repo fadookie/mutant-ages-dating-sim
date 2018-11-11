@@ -127,7 +127,7 @@ label spookyworld:
     stop music fadeout 2.0
     "{i}I had butterflies in my stomach. I could hardly believe it!{/i}"
     "{i}Before I knew it, we were blasting off...{/i}"
-# TODO blast off sound
+    play sound "sfx/274820__robinhood76__05800-space-jet-flyby.wav"
 
     scene bg spookyworld at spookyworld_tx with fade
     play music "music/63842__benboncan__tawny-owls.ogg"
