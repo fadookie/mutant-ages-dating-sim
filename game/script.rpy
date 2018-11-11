@@ -247,7 +247,7 @@ label myplace2:
     play sound "sfx/240464__godowan__pour-water2.wav"
     "{i}My hands were shaking a little bit as I poured the drinks. I really needed some liquid courage.{/i}"
 
-    play sound "sfx/76812__dj-burnham__wine-glasses-clink.mp3"
+    play sound "sfx/76812__dj-burnham__wine-glasses-clink.wav"
     w "Thanks. Cheers!"
 
     show wolverine halfback at left, xflip_tx, logan_tx with dissolve
