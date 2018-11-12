@@ -6,7 +6,7 @@
 define w = Character("Logan")
 default visited_pumpkin = False
 default visited_haunted_house = False
-default debug = True
+default debug = False
 
 init:
     transform xflip_tx:
