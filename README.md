@@ -8,6 +8,8 @@ Please play with the sound on, I think it really adds a lot.
 
 [Download here.](https://github.com/fadookie/mutant-ages-dating-sim/releases/tag/1.0)
 
+[Maddy and Ryan from the Mutant Ages did a blind playthrough video here](https://www.youtube.com/watch?v=DceCykxJRo8). It was a blast to watch, although keep in mind that it's a short game so this video will basically spoil the whole thing!
+
 ## Developer notes
 Made with [Ren'Py](https://renpy.org/) 7.1.1.929.
 
